@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 @SessionAttributes("tacoOrder")
 public class DesignTacoController {
 
-
     @ModelAttribute
     public void addIngredientsToModel(Model model){
         List<Ingredient> ingredients = Arrays.asList(
@@ -34,13 +33,14 @@ public class DesignTacoController {
                 new Ingredient("LETC","Lettuce", Type.VEGGIES),
                 new Ingredient("CHED","Cheddar", Type.CHEESE),
                 new Ingredient("JACK","Monterrey Jck", Type.CHEESE),
-                new Ingredient("SRCR","Sour Cream", Type.SAUCE)
+                new Ingredient("SLSA","Salsa", Type.SAUCE),
+                 new Ingredient("SRCR","Sour Cream", Type.SAUCE)
         );
 
         Type[] types = Type.values();
         for (Type type : types) {
-            model.addAttribute(type.toString().toLowerCase());
-            filterByType(ingredients, type);
+            model.addAttribute(type.toString().toLowerCase(),
+                    filterByType(ingredients, type));
         }
     }
 
