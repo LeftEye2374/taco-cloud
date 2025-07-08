@@ -35,6 +35,7 @@ public class JdbcIngredientRepository implements IngredientRepository {
                 "select id,name,type from Ingredient where id=?",
                 this::mapRowToIngredient,
                 id);
+        
         return results.size() == 0 ? Optional.empty() : Optional.of(results.get(0));
     }
 
