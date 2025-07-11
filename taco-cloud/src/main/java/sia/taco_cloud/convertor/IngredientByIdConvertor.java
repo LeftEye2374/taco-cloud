@@ -18,6 +18,6 @@ public class IngredientByIdConvertor implements Converter<String, Ingredient> {
 
     @Override
     public Ingredient convert(String id) {
-        ingredientRepository.findById(id).orElse(null);
+       return ingredientRepository.findById(id).orElse(null);
     }
 }
