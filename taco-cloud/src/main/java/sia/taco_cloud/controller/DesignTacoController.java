@@ -7,14 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import sia.taco_cloud.model.Ingredient;
-import sia.taco_cloud.model.IngredientType;
-import sia.taco_cloud.model.Taco;
-import sia.taco_cloud.model.TacoOrder;
+import sia.taco_cloud.model.ingredient.Ingredient;
+import sia.taco_cloud.model.ingredient.IngredientType;
+import sia.taco_cloud.model.taco.Taco;
+import sia.taco_cloud.model.taco.TacoOrder;
 import sia.taco_cloud.repository.IngredientRepository;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 

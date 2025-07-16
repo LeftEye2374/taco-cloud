@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import sia.taco_cloud.model.TacoOrder;
+import sia.taco_cloud.model.taco.TacoOrder;
 import sia.taco_cloud.repository.OrderRepository;
 
 @Slf4j

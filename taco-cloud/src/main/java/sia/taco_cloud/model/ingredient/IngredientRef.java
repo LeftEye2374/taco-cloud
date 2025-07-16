@@ -1,4 +1,4 @@
-package sia.taco_cloud.model;
+package sia.taco_cloud.model.ingredient;
 
 import lombok.Data;
 

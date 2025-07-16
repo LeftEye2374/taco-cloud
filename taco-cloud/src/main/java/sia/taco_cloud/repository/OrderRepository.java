@@ -3,7 +3,7 @@ package sia.taco_cloud.repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import sia.taco_cloud.model.TacoOrder;
+import sia.taco_cloud.model.taco.TacoOrder;
 
 import java.util.Date;
 import java.util.List;
