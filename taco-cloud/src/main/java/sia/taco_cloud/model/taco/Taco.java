@@ -4,7 +4,6 @@ package sia.taco_cloud.model.taco;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
-import org.springframework.data.cassandra.core.mapping.Column;
 import sia.taco_cloud.model.ingredient.Ingredient;
 
 import java.util.Date;
@@ -20,7 +19,6 @@ public class Taco {
     private Date createdAt = new Date();
 
     @Size(min = 1, message = "Your must choose at least 1 ingredient")
-    @Column("ingredients")
     private List<Ingredient> ingredients;
 
     public void addIngredient(Ingredient ingredient) {
