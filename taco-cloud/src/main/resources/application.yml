@@ -8,4 +8,13 @@ spring:
       port: 27017
       username: tacocoloud
       password: s3cr3tp455w0rd
-      database: tacoclouddb
+      database: tacocloudd
+
+  security:
+    oauth2:
+      client:
+        registration:
+          <oauth2 or openid provider name>:
+            client-id: <client id>
+            client-secret: <client secret>
+            scope: <comma-separated list of requested scopes>
