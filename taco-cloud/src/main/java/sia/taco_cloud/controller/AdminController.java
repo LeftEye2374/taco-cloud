@@ -16,5 +16,8 @@ public class AdminController {
     }
 
     @PostMapping("/deleteOrders")
-    
+    public String deleteOrders() {
+        orderAdminService.deleteAllOrders();
+        return "redirect:/admin";
+    }
 }
