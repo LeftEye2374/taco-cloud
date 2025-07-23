@@ -1,4 +1,9 @@
 spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
   datasource:
-    generate-unique-name: false
-    name: tacoCloud
+    url: jdbc:h2:mem:tacoCloud
+  h2:
+    console:
+      enabled: true

@@ -1,13 +1,13 @@
 package sia.tacoCloud.controller;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
-import sia.dao.OrderRepository;
+import sia.tacoCloud.dao.OrderRepository;
 import sia.tacoCloud.data.TacoOrder;
 
 @Slf4j
@@ -16,10 +16,10 @@ import sia.tacoCloud.data.TacoOrder;
 @SessionAttributes("tacoOrder")
 public class OrderController {
 
-    private OrderRepository orderRepository;
+    private final OrderRepository orderRepo;
 
-    public OrderController(OrderRepository orderRepository) {
-        this.orderRepository = orderRepository;
+    public OrderController(OrderRepository orderRepo) {
+        this.orderRepo = orderRepo;
     }
 
     @GetMapping("/current")
@@ -35,8 +35,8 @@ public class OrderController {
             return "orderForm";
         }
 
-        orderRepository.save(tacoOrder);
         sessionStatus.setComplete();
+        orderRepo.save(tacoOrder);
         return "redirect:/";
     }
 }

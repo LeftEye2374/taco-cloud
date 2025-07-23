@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @SessionAttributes("tacoOrder")
 public class DesignTacoController {
 
-    private static final List<Ingredient> INGREDIENTS = Arrays.asList(
+    private final List<Ingredient> INGREDIENTS = Arrays.asList(
             new Ingredient("FLTO", "Flour Tortilla", Ingredient.Type.WRAP),
             new Ingredient("COTO", "Corn Tortilla", Ingredient.Type.WRAP),
             new Ingredient("GRBF", "Ground Beef", Ingredient.Type.PROTEIN),

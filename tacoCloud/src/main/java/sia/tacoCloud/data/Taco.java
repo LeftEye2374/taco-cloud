@@ -24,6 +24,10 @@ public class Taco {
 
     @NotNull
     @Size(min = 1, message = "You must choose at least 1 ingredient")
-    @ManyToOne()
-    private List<Ingredient> ingredients;
+    @ManyToMany
+    @JoinTable(
+            name = "Ingredient_Ref",
+            joinColumns = @JoinColumn(name = "taco_id"),
+            inverseJoinColumns = @JoinColumn(name = "ingredient_id")
+    )    private List<Ingredient> ingredients;
 }

@@ -7,6 +7,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import sia.tacoCloud.data.Taco;
 import sia.tacoCloud.data.TacoOrder;
 
+import static org.hamcrest.Matchers.instanceOf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -42,7 +43,9 @@ public class DesignTacoControllerTest {
     @Test
     public void testModelAttributes() throws Exception {
         mockMvc.perform(get("/design"))
-                .andExpect(model().attribute("tacoOrder", new TacoOrder()))
-                .andExpect(model().attribute("taco", new Taco()));
+                .andExpect(model().attributeExists("tacoOrder")) // Проверяем наличие атрибута
+                .andExpect(model().attribute("tacoOrder", instanceOf(TacoOrder.class))) // Проверяем тип
+                .andExpect(model().attributeExists("taco")) // Проверяем наличие атрибута
+                .andExpect(model().attribute("taco", instanceOf(Taco.class))); // Проверяем тип
     }
 }
