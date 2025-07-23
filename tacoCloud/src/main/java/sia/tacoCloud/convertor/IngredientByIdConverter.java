@@ -1,16 +1,18 @@
 package sia.tacoCloud.convertor;
 
 import org.springframework.core.convert.converter.Converter;
-import sia.tacoCloud.data.Ingredient;
+import org.springframework.stereotype.Component;
+import sia.tacoCloud.data.ingredient.Ingredient;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class IngredientByIdConverter implements Converter<String, Ingredient> {
 
-    private Map<String, Ingredient> ingredientMap =  new HashMap<>();
+    private final Map<String, Ingredient> ingredientMap =  new HashMap<>();
 
-    public IngredientByIdConverter(Map<String, Ingredient> ingredientMap) {
+    public IngredientByIdConverter() {
         ingredientMap.put("FLTO", new Ingredient("FLTO","Flour Tortilla", Ingredient.Type.WRAP));
         ingredientMap.put("COTO", new Ingredient("COTO","Corn Tortilla", Ingredient.Type.WRAP));
         ingredientMap.put("GRBF", new Ingredient("GRBF","Ground Beef", Ingredient.Type.PROTEIN));

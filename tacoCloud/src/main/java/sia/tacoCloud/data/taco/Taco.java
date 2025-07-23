@@ -1,6 +1,7 @@
-package sia.tacoCloud.data;
+package sia.tacoCloud.data.taco;
 
 import lombok.Data;
+import sia.tacoCloud.data.ingredient.Ingredient;
 
 import java.util.List;
 
