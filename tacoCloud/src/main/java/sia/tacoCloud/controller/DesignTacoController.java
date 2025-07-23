@@ -6,9 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-        import sia.tacoCloud.data.ingredient.Ingredient;
-import sia.tacoCloud.data.taco.Taco;
-import sia.tacoCloud.data.taco.TacoOrder;
+        import sia.tacoCloud.data.Ingredient;
+import sia.tacoCloud.data.Taco;
+import sia.tacoCloud.data.TacoOrder;
 
 import java.util.Arrays;
 import java.util.List;

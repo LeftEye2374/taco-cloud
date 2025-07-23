@@ -2,7 +2,7 @@ package sia.tacoCloud.convertor;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-import sia.tacoCloud.data.ingredient.Ingredient;
+import sia.tacoCloud.data.Ingredient;
 
 import java.util.HashMap;
 import java.util.Map;
