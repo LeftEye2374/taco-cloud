@@ -1,7 +1,9 @@
 package sia.tacoCloud.controller;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import sia.tacoCloud.data.taco.TacoOrder;
@@ -19,8 +21,12 @@ public class OrderController {
     }
 
     @PostMapping
-    public String processOrder(@ModelAttribute("tacoOrder") TacoOrder tacoOrder,
-                               SessionStatus sessionStatus) {
+    public String processOrder(@ModelAttribute("tacoOrder") @Valid TacoOrder tacoOrder,
+                               SessionStatus sessionStatus, Errors errors) {
+        if (errors.hasErrors()) {
+            return "orderForm";
+        }
+
         log.info("Order submitted: {}", tacoOrder);
         sessionStatus.setComplete();
         return "redirect:/";
