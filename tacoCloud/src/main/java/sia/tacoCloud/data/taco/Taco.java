@@ -1,9 +1,10 @@
-package sia.tacoCloud.data;
+package sia.tacoCloud.data.taco;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import sia.tacoCloud.data.ingredient.Ingredient;
 
 import java.util.Date;
 import java.util.List;

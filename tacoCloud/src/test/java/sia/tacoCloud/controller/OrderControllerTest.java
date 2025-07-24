@@ -7,14 +7,13 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import sia.tacoCloud.dao.OrderRepository;
-import sia.tacoCloud.data.Taco;
-import sia.tacoCloud.data.TacoOrder;
+import sia.tacoCloud.data.taco.Taco;
+import sia.tacoCloud.data.taco.TacoOrder;
 
 
 import static org.hamcrest.Matchers.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 

@@ -1,14 +1,13 @@
 package sia.tacoCloud.controller;
 
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import sia.tacoCloud.dao.OrderRepository;
-import sia.tacoCloud.data.TacoOrder;
+import sia.tacoCloud.data.taco.TacoOrder;
 
 @Slf4j
 @Controller

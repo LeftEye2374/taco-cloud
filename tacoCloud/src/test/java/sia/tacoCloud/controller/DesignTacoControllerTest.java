@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
-import sia.tacoCloud.data.Taco;
-import sia.tacoCloud.data.TacoOrder;
+import sia.tacoCloud.data.taco.Taco;
+import sia.tacoCloud.data.taco.TacoOrder;
 
 import static org.hamcrest.Matchers.instanceOf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
