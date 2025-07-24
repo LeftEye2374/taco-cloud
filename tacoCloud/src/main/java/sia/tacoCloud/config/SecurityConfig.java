@@ -12,7 +12,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.server.SecurityWebFilterChain;
 import sia.tacoCloud.dao.UserRepository;
 import sia.tacoCloud.security.UserDetailService;
 
@@ -20,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 public class SecurityConfig {
@@ -30,7 +28,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public InMemoryUserDetailsManager userDetailService(PasswordEncoder encoder) {
+    public InMemoryUserDetailsManager InMemoryUserDetailService(PasswordEncoder encoder) {
         List<UserDetails> userList = new ArrayList<>();
         userList.add(new User(
                 "buzz", encoder.encode("password"),

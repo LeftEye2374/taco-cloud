@@ -4,16 +4,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import sia.tacoCloud.dao.OrderRepository;
+import sia.tacoCloud.dao.UserRepository;
 import sia.tacoCloud.data.taco.Taco;
 import sia.tacoCloud.data.taco.TacoOrder;
-
 
 import static org.hamcrest.Matchers.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -25,6 +27,9 @@ public class OrderControllerTest {
 
     @MockitoBean
     private OrderRepository orderRepo;
+
+    @MockitoBean
+    private UserRepository userRepo;
 
     private TacoOrder testOrder;
 
@@ -46,6 +51,7 @@ public class OrderControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "testuser", roles = {"USER"})
     public void showOrderForm_shouldReturnOrderFormView() throws Exception {
         mockMvc.perform(get("/orders/current")
                         .sessionAttr("tacoOrder", testOrder))
@@ -56,8 +62,10 @@ public class OrderControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "testuser", roles = {"USER"})
     public void processOrder_withValidData_shouldSaveAndRedirect() throws Exception {
         mockMvc.perform(post("/orders")
+                        .with(csrf()) // Добавляем CSRF-токен
                         .sessionAttr("tacoOrder", testOrder)
                         .param("deliveryName", testOrder.getDeliveryName())
                         .param("deliveryStreet", testOrder.getDeliveryStreet())
@@ -74,10 +82,11 @@ public class OrderControllerTest {
         verify(orderRepo).save(any(TacoOrder.class));
     }
 
-
     @Test
+    @WithMockUser(username = "testuser", roles = {"USER"})
     public void processOrder_withInvalidData_shouldReturnBadRequest() throws Exception {
         mockMvc.perform(post("/orders")
+                        .with(csrf()) // Добавляем CSRF-токен
                         .sessionAttr("tacoOrder", testOrder)
                         .param("deliveryName", "")  // Пустое имя - невалидное
                         .param("deliveryStreet", testOrder.getDeliveryStreet())
@@ -90,8 +99,8 @@ public class OrderControllerTest {
                 .andExpect(status().isBadRequest()); // Ожидаем 400 Bad Request
     }
 
-
     @Test
+    @WithMockUser(username = "testuser", roles = {"USER"})
     public void sessionAttributes_shouldContainTacoOrderWithTacos() throws Exception {
         mockMvc.perform(get("/orders/current")
                         .sessionAttr("tacoOrder", testOrder))
@@ -102,14 +111,17 @@ public class OrderControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "testuser", roles = {"USER"})
     public void processOrder_shouldClearSession() throws Exception {
         mockMvc.perform(post("/orders")
+                        .with(csrf()) // Добавляем CSRF-токен
                         .sessionAttr("tacoOrder", testOrder)
                         .flashAttr("tacoOrder", testOrder))
                 .andExpect(request().sessionAttributeDoesNotExist("tacoOrder"));
     }
 
     @Test
+    @WithMockUser(username = "testuser", roles = {"USER"})
     public void orderForm_shouldPopulateModelWithSessionTacoOrder() throws Exception {
         mockMvc.perform(get("/orders/current")
                         .sessionAttr("tacoOrder", testOrder))

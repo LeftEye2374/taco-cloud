@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -18,8 +18,6 @@ import java.util.Collection;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-@RequiredArgsConstructor
 public class User implements UserDetails {
 
     private static final long serialVersionUID = 1L;
@@ -36,6 +34,17 @@ public class User implements UserDetails {
     private String state;
     private String zip;
     private String phoneNumber;
+
+    public  User(String username, String password, String fullName, String street, String city, String state, String zip, String phoneNumber) {
+        this.username = username;
+        this.password = password;
+        this.fullName = fullName;
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.phoneNumber = phoneNumber;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
