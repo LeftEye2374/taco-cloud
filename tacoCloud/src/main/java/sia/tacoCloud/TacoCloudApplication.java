@@ -12,6 +12,9 @@ public class TacoCloudApplication implements WebMvcConfigurer {
 		SpringApplication.run(TacoCloudApplication.class, args);
 	}
 
+
+
+	
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry){
 		registry.addViewController("/").setViewName("home");
