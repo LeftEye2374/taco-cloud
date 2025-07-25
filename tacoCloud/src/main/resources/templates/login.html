@@ -5,6 +5,7 @@
     <title>Taco Cloud</title>
 </head>
 <body>
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
     <h1>Login</h1>
     <img th:src="@{/images/TacoCloud.png}"/>
 
@@ -23,7 +24,7 @@
 
         <input type="submit" value="Login"/>
 
-        <a th:href="/oauth2/authorization/facebook">Sign in with Facebook</a>
+        <a th:href="@{/oauth2/authorization/facebook}">Sign in with Facebook</a>
     </form>
 </body>
 </html>

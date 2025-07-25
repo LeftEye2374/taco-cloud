@@ -3,7 +3,6 @@ package sia.tacoCloud.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,11 +12,6 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import sia.tacoCloud.dao.UserRepository;
 import sia.tacoCloud.security.UserDetailService;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 
 @Configuration
 public class SecurityConfig {
@@ -59,13 +53,13 @@ public class SecurityConfig {
         return http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/design", "/orders").hasRole("USER")
-                        .requestMatchers("/", "/**", "/register").permitAll()
+                        .requestMatchers("/", "/**", "/register", "/login").permitAll()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
                 )
                 .oauth2Login( auth -> auth.loginPage("/login"))
-                .logout(logout -> logout.logoutUrl("/"))
+                .logout(logout -> logout.logoutSuccessUrl("/"))
                 .build();
     }
 }
