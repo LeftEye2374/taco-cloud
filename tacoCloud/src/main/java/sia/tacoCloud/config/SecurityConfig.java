@@ -3,7 +3,6 @@ package sia.tacoCloud.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,15 +27,20 @@ public class SecurityConfig {
     }
 
     @Bean
-    public InMemoryUserDetailsManager InMemoryUserDetailService(PasswordEncoder encoder) {
-        List<UserDetails> userList = new ArrayList<>();
-        userList.add(new User(
-                "buzz", encoder.encode("password"),
-                Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"))));
-        userList.add(new User(
-                "woody", encoder.encode("password"),
-                Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"))));
-        return new InMemoryUserDetailsManager(userList);
+    public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
+        UserDetails user1 = User.builder()
+                .username("buzz")
+                .password(passwordEncoder.encode("password"))
+                .roles("USER")
+                .build();
+
+        UserDetails user2 = User.builder()
+                .username("woody")
+                .password(passwordEncoder.encode("password"))
+                .roles("USER")
+                .build();
+
+        return new InMemoryUserDetailsManager(user1, user2);
     }
 
     @Bean
