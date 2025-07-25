@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
+import sia.tacoCloud.security.User;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,6 +21,9 @@ public class TacoOrder implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @ManyToOne
+    private User user;
 
     private Date placedAt = new Date();
 
