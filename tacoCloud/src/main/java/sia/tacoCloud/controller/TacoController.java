@@ -11,7 +11,7 @@ import sia.tacoCloud.data.taco.Taco;
 
 @RestController
 @RequestMapping(path = "/api/tacos", produces = "application/json")
-@CrossOrigin(origins = "http://tacocloud:8080")
+@CrossOrigin(origins = {"http://tacocloud:8080", "http://tacocloud.com"})
 public class TacoController {
 
     private TacoRepository tacoRepo;
