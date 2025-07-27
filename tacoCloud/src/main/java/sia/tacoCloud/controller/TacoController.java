@@ -2,12 +2,12 @@ package sia.tacoCloud.controller;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import sia.tacoCloud.dao.TacoRepository;
 import sia.tacoCloud.data.taco.Taco;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/tacos", produces = "application/json")
@@ -25,5 +25,16 @@ public class TacoController {
         PageRequest page = PageRequest.of(
                 0,12, Sort.by("createdAt").descending());
         return tacoRepo.findAll(page).getContent();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Taco> tacoById(@PathVariable Long id){
+        return tacoRepo.findById(id);
+    }
+
+    @PostMapping(consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Taco postTaco(@RequestBody Taco taco){
+        return tacoRepo.save(taco);
     }
 }
