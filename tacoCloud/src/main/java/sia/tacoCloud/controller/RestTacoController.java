@@ -6,17 +6,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import sia.tacoCloud.dao.TacoRepository;
 import sia.tacoCloud.data.taco.Taco;
-
 import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/tacos", produces = "application/json")
 @CrossOrigin(origins = {"http://tacocloud:8080", "http://tacocloud.com"})
-public class TacoController {
+public class RestTacoController {
 
     private TacoRepository tacoRepo;
 
-    public TacoController(TacoRepository tacoRepo){
+    public RestTacoController(TacoRepository tacoRepo){
         this.tacoRepo = tacoRepo;
     }
 
