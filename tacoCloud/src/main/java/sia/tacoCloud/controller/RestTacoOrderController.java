@@ -2,11 +2,12 @@ package sia.tacoCloud.controller;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import sia.tacoCloud.dao.OrderRepository;
 import sia.tacoCloud.data.taco.TacoOrder;
 
-@RestController
+@Controller
 @RequestMapping(path = "/api/orders", produces = "application/json")
 @CrossOrigin("*")
 public class RestTacoOrderController {
