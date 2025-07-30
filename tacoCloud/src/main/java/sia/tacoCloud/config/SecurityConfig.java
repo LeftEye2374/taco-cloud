@@ -1,8 +1,11 @@
 package sia.tacoCloud.config;
 
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.repository.cdi.Eager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,6 +17,7 @@ import sia.tacoCloud.dao.UserRepository;
 import sia.tacoCloud.security.UserDetailService;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -61,5 +65,15 @@ public class SecurityConfig {
                 .oauth2Login( auth -> auth.loginPage("/login"))
                 .logout(logout -> logout.logoutSuccessUrl("/"))
                 .build();
+    }
+
+    @Bean
+    public ApplicationRunner dataLoader(UserRepository userRepo, PasswordEncoder passwordEncoder) {
+        return args -> {
+            userRepo.save(
+                    new sia.tacoCloud.security.User("habuma", passwordEncoder.encode("password"), "ROLE_ADMIN"));
+            userRepo.save(
+                    new sia.tacoCloud.security.User("tacochef", passwordEncoder.encode("password"),"ROLE_ADMIN"));
+        };
     }
 }
