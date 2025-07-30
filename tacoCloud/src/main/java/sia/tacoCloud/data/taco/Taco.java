@@ -30,5 +30,9 @@ public class Taco {
             name = "Ingredient_Ref",
             joinColumns = @JoinColumn(name = "taco_id"),
             inverseJoinColumns = @JoinColumn(name = "ingredient_id")
-    )    private List<Ingredient> ingredients;
+    )
+    private List<Ingredient> ingredients;
+
+    @ManyToOne
+    private TacoOrder tacoOrder;
 }
