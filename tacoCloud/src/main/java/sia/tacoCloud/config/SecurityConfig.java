@@ -74,6 +74,9 @@ public class SecurityConfig {
                     new sia.tacoCloud.security.User("habuma", passwordEncoder.encode("password"), "ROLE_ADMIN"));
             userRepo.save(
                     new sia.tacoCloud.security.User("tacochef", passwordEncoder.encode("password"),"ROLE_ADMIN"));
+
+
+            
         };
     }
 }
