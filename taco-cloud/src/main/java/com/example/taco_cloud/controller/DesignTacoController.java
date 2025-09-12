@@ -62,6 +62,7 @@ public class DesignTacoController {
         return "redirect:/orders/current";
     }
 
+
     private Iterable<Ingredient> filterByType(List<Ingredient> ingredients, Ingredient.Type type) {
         return ingredients.stream()
                 .filter(x -> x.getType().equals(type))
